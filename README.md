@@ -31,17 +31,26 @@ Evidence: [`src/Providers/InertiaVueAdapterServiceProvider.php`](src/Providers/I
 
 ## Screens And Workflow
 
-Marketplace media is declared in `capell.json`:
+Screenshot contract: `docs/screenshots.json`.
 
-![Capell Inertia Vue adapter beta marketplace artwork](docs/assets/marketplace/extension-card.jpg)
+![Illustrative inertia vue adapter catalogue card](docs/screenshots/inertia-vue-adapter-catalogue-preview.png)
 
-- Beta artwork for the Vue runtime adapter; rendered proof belongs to a consuming Vue page or theme.
+- Illustrative inertia vue adapter catalogue card (frontend, required evidence).
 
 ## Technical Shape
 
-- Service providers: `Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider`.
-- Health checks: `Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck`.
-- Cache tags: `inertia-vue`.
+### Service providers
+
+- `Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider`
+
+### Health checks
+
+- `Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck`
+
+### Cache tags
+
+- `inertia-vue`
+
 
 ## Data Model
 
@@ -52,7 +61,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 - Required packages: `capell-app/core`, `capell-app/inertia`.
 - Admin navigation: no admin page or resource contribution is declared.
 - Admin/editor extensions: none declared.
-- Permissions: none declared in `capell.json`.
+- Permissions: no package permission declarations or Shield gates detected; host access rules still apply.
 - Public routes: none declared.
 - Database changes: no package migrations declared.
 - Config: no package config files.
@@ -77,8 +86,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 ## Quick Start
 
 1. Install the package: `composer require capell-app/inertia-vue-adapter`.
-2. No package-specific setup command or migrations are declared.
-3. Verify the package provider and manifest contributions are registered in the host app.
+2. Open `/screenshot-fixtures/catalogue/inertia-vue-adapter/inertia-vue-adapter-catalogue-preview` and confirm the public output renders without admin state.
 
 ## Next Steps
 

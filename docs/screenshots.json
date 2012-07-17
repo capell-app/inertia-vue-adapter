@@ -4,8 +4,8 @@
     "generatedFor": "deployment-screenshot-runner",
     "requiresInstalledPackage": true,
     "outputDirectory": "packages/inertia-vue-adapter/docs/screenshots",
-    "auditStatus": "illustrative-fixture",
-    "auditReason": "Deterministic catalogue fixture documents this runtime or bundle package without claiming a package-owned UI.",
+    "auditStatus": "fixture-needed",
+    "auditReason": "The existing image and catalogue route are placeholders, not product evidence. A built Vue Inertia host must render this adapter's shipped Capell/Page component before replacement capture; no verified host route is currently configured.",
     "entries": [
         {
             "id": "inertia-vue-adapter-catalogue-preview",

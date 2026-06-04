@@ -6,6 +6,7 @@ namespace Capell\InertiaVueAdapter\Providers;
 
 use Capell\Core\Data\VendorAssetData;
 use Capell\Core\Facades\CapellCore;
+use Capell\Core\Support\Assets\VendorAssetConditionRegistry;
 use Capell\Core\Support\Packages\AbstractPackageServiceProvider;
 use Capell\Inertia\Data\InertiaAdapterData;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
@@ -36,6 +37,7 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
         }
 
         $this->registerAdapter();
+        $this->registerVendorAssetConditions();
         $this->registerVendorAssets();
     }
 
@@ -66,7 +68,17 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
             path: self::BUILD_PATH,
             file: self::ENTRYPOINT,
             packageName: self::$packageName,
+            condition: 'capell-inertia-adapter-vue',
         ));
+    }
+
+    private function registerVendorAssetConditions(): void
+    {
+        resolve(VendorAssetConditionRegistry::class)->register(
+            'capell-inertia-adapter-vue',
+            fn (mixed $context): bool => ($context->runtime->usesInertia ?? false)
+                && config('capell-inertia.adapter', self::ADAPTER_KEY) === self::ADAPTER_KEY,
+        );
     }
 
     private function adapterData(): InertiaAdapterData

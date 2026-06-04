@@ -1,0 +1,79 @@
+{
+    "manifest-version": 3,
+    "name": "capell-app/inertia-vue-adapter",
+    "slug": "inertia-vue-adapter",
+    "displayName": "Capell Inertia Vue Adapter",
+    "kind": "plugin",
+    "capellApiVersion": "^4.0",
+    "version": "4.x-dev",
+    "description": "Vue 3 asset adapter for Capell Inertia pages and package routes.",
+    "product": {
+        "group": "Capell Frontend",
+        "tier": "core",
+        "bundle": "frontend"
+    },
+    "namespace": "Capell\\InertiaVueAdapter",
+    "surfaces": ["frontend"],
+    "dependencies": {
+        "requires": ["capell-app/core", "capell-app/inertia"],
+        "supports": [],
+        "conflicts": []
+    },
+    "providers": {
+        "metadata": [],
+        "install": [],
+        "runtime": [
+            "Capell\\InertiaVueAdapter\\Providers\\InertiaVueAdapterServiceProvider"
+        ],
+        "admin": [],
+        "frontend": []
+    },
+    "contributes": [],
+    "database": {
+        "migrations": false,
+        "settings": false,
+        "requiredTables": []
+    },
+    "commands": {
+        "install": null,
+        "setup": null,
+        "demo": null,
+        "doctor": null
+    },
+    "settings": [],
+    "permissions": [],
+    "capabilities": ["inertia-adapter-vue"],
+    "performance": {
+        "frontendRenderBudgetMs": 20,
+        "adminQueryBudget": 0,
+        "cacheTags": ["inertia-vue"],
+        "cacheSafety": {
+            "cacheable": false,
+            "variesBy": ["site", "locale"],
+            "sensitiveOutput": false,
+            "invalidationSources": [],
+            "queueInvalidation": false
+        }
+    },
+    "healthChecks": [
+        {
+            "key": "inertia-vue-adapter.package-health",
+            "label": "Capell Inertia Vue adapter is registered.",
+            "class": "Capell\\InertiaVueAdapter\\Health\\InertiaVueAdapterHealthCheck",
+            "severity": "important",
+            "surface": "frontend"
+        }
+    ],
+    "commercial": {
+        "proposedLicense": "included",
+        "requestedCertification": "first-party",
+        "supportPolicy": "standard",
+        "privateDocsRequested": false
+    },
+    "marketplace": {
+        "summary": "Vue 3 adapter for Capell Inertia.",
+        "description": "Registers Vue 3 NPM dependencies and the Capell Inertia Vue application entrypoint.",
+        "screenshots": [],
+        "categories": ["frontend", "developer-tools"]
+    }
+}

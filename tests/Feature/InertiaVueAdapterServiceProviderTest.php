@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Capell\Core\Data\VendorAssetData;
 use Capell\Core\Enums\VendorAssetEnum;
 use Capell\Core\Facades\CapellCore;
+use Capell\Core\Support\Assets\VendorAssetConditionRegistry;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck;
 use Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider;
@@ -63,6 +64,24 @@ it('registers npm dependencies and the vue build entrypoint as vendor assets', f
         'path' => InertiaVueAdapterServiceProvider::BUILD_PATH,
         'file' => InertiaVueAdapterServiceProvider::ENTRYPOINT,
     ]);
+});
+
+it('disables the generic vue build condition when the bookings vue component pack is installed', function (): void {
+    config()->set('capell-inertia.adapter', InertiaVueAdapterServiceProvider::ADAPTER_KEY);
+
+    $context = (object) [
+        'runtime' => (object) [
+            'usesInertia' => true,
+        ],
+    ];
+
+    $registry = resolve(VendorAssetConditionRegistry::class);
+
+    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
+
+    CapellCore::forcePackageInstalled(InertiaVueAdapterServiceProvider::THEME_BOOKINGS_VUE_PACKAGE);
+
+    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeFalse();
 });
 
 it('passes health when the vue adapter has been registered', function (): void {

@@ -21,6 +21,8 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
 
     public const string ENTRYPOINT = 'resources/js/app.js';
 
+    public const string THEME_BOOKINGS_VUE_PACKAGE = 'capell-app/theme-inertia-bookings-vue';
+
     public static string $name = 'capell-inertia-vue-adapter';
 
     public static string $packageName = 'capell-app/inertia-vue-adapter';
@@ -77,7 +79,8 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
         resolve(VendorAssetConditionRegistry::class)->register(
             'capell-inertia-adapter-vue',
             fn (mixed $context): bool => ($context->runtime->usesInertia ?? false)
-                && config('capell-inertia.adapter', self::ADAPTER_KEY) === self::ADAPTER_KEY,
+                && config('capell-inertia.adapter', self::ADAPTER_KEY) === self::ADAPTER_KEY
+                && ! CapellCore::isPackageInstalled(self::THEME_BOOKINGS_VUE_PACKAGE),
         );
     }
 

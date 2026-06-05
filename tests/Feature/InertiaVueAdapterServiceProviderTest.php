@@ -22,6 +22,8 @@ uses(InertiaVueAdapterTestCase::class);
 it('registers the vue adapter with the inertia bridge', function (): void {
     $adapter = resolve(InertiaAdapterRegistry::class)->get(InertiaVueAdapterServiceProvider::ADAPTER_KEY);
 
+    throw_if($adapter === null, RuntimeException::class, 'Vue adapter was not registered.');
+
     expect($adapter)->not->toBeNull()
         ->and($adapter->key)->toBe('vue')
         ->and($adapter->packageName)->toBe(InertiaVueAdapterServiceProvider::$packageName)

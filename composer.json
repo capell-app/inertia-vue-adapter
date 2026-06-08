@@ -24,6 +24,9 @@
             "providers": [
                 "Capell\\InertiaVueAdapter\\Providers\\InertiaVueAdapterServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-main": "4.x-dev"
         }
     },
     "config": {

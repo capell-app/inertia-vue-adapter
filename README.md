@@ -31,6 +31,14 @@ For developers, it registers the `vue` adapter key, NPM dependencies, build asse
 - Feature-specific Vue components can live in theme/component packages such as `capell-app/theme-inertia-bookings-vue`.
 - It owns no migrations, settings, routes, admin resources, or public Blade views.
 
+## Runtime Surface
+
+- Provider: `src/Providers/InertiaVueAdapterServiceProvider.php`
+- Health check: `src/Health/InertiaVueAdapterHealthCheck.php`
+- Entry point: `resources/js/app.js`
+- Component source: `resources/js/`
+- Tests: `packages/inertia-vue-adapter/tests`
+
 ## Docs
 
 - [docs index](docs/README.md)

@@ -8,7 +8,7 @@ Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell plug
 
 Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.
 
-After install, Vue theme and package developers get registered Vue/Vite dependencies, a generic Vue entrypoint, and a bridge adapter key that Capell Inertia can resolve safely.
+After install, the package affects public rendering, public routes, or frontend runtime behaviour.
 
 Status details:
 
@@ -21,13 +21,19 @@ Status details:
 
 ## Why It Matters
 
-**For developers:** The package gives developers package-owned service providers and a Vue client entrypoint instead of pushing adapter behaviour into core or application code.
+**For developers:** The package gives developers package-owned service providers instead of pushing this behaviour into core or application code.
 
-**For teams:** Vue-based Capell frontends can share the same Inertia bridge while themes own the actual visual components.
+**For teams:** Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.
 
 ## Screens And Workflow
 
-No screenshot contract is required for this generic adapter. Visual screenshots belong to Vue theme/component packages that render actual public pages through it.
+Docs gap: add `docs/screenshots.json` before promoting this package with visual workflow claims.
+
+- Admin index screen if the package has a Filament resource.
+- Create/edit screen if editors create records.
+- Settings/configuration screen when settings exist.
+- Frontend output when the package renders public pages.
+- Package detail or install intent screen when marketplace-owned.
 
 ## Technical Shape
 
@@ -39,7 +45,7 @@ No screenshot contract is required for this generic adapter. Visual screenshots 
 
 This package has no schema impact. It does not declare package-owned migrations or required tables.
 
-It registers adapter metadata and vendor assets with `capell-app/inertia` and `capell-app/core`; it does not persist data.
+Docs gap: document extension points here if the package delegates persistence to a host package.
 
 ## Install Impact
 
@@ -55,7 +61,6 @@ It registers adapter metadata and vendor assets with `capell-app/inertia` and `c
 ## Common Pitfalls
 
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
-- Set `CAPELL_INERTIA_ADAPTER=vue` when this generic Vue build should be used. A richer Vue theme package may suppress this generic build and provide its own component pack.
 - Keep `composer.json`, `composer.local.json`, `capell.json`, docs, screenshots, and tests aligned when the package surface changes.
 
 ## Troubleshooting
@@ -68,13 +73,12 @@ It registers adapter metadata and vendor assets with `capell-app/inertia` and `c
 ## Quick Start
 
 1. Install the package: `composer require capell-app/inertia-vue-adapter`.
-2. Set `CAPELL_INERTIA_ADAPTER=vue` in the host app.
-3. Verify the Capell Inertia bridge reports the Vue adapter and that the Vue build entrypoint is included in vendor assets.
+2. Run the required setup: no package migrations are declared; clear cached config and routes if the host app uses caches.
+3. Verify the package provider is registered and the related frontend, command, or extension point is active.
 
 ## Next Steps
 
 - [Package docs index](README.md)
-- [Improvement plan](improvement-plan.md)
 - [Marketplace assets](assets/marketplace/)
 - [Capell content language plan](../../../docs/CONTENT_LANGUAGE_PLAN.md)
 - [Capell documentation design system](../../../docs/DESIGN_SYSTEM.md)

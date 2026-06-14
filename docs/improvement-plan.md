@@ -8,11 +8,11 @@ The Vue adapter registers the `vue` adapter with the shared Capell Inertia bridg
 
 ## Completed Improvement Slices
 
-- **2026-06-14:** Routed the vendor asset condition through the shared `ResolveInertiaAdapterKeyAction`, so trimmed adapter config and invalid config behave consistently across public props and asset registration. Tightened health checks to verify the registered adapter belongs to this package and points at the expected build entrypoint. Added this package-local plan and refreshed generated docs placeholders.
+- **2026-06-14:** Routed the vendor asset condition through the shared `ResolveInertiaAdapterKeyAction`, so trimmed adapter config and the default Vue fallback behave consistently across public props and asset registration. Tightened health checks to verify the registered adapter belongs to this package and points at the expected build entrypoint. Added this package-local plan and refreshed generated docs placeholders.
 
 ## 2. Improvements
 
-1. **Shipped 2026-06-14: align asset condition with sanitized adapter config.** The build condition now uses the bridge resolver instead of raw config, so `CAPELL_INERTIA_ADAPTER=" vue "` enables the Vue build and invalid config falls back away from it. — `src/Providers/InertiaVueAdapterServiceProvider.php`, `tests/Feature/InertiaVueAdapterServiceProviderTest.php` — S
+1. **Shipped 2026-06-14: align asset condition with sanitized adapter config.** The build condition now uses the bridge resolver instead of raw config, so `CAPELL_INERTIA_ADAPTER=" vue "` enables the Vue build and invalid config falls back to the default Vue adapter. — `src/Providers/InertiaVueAdapterServiceProvider.php`, `tests/Feature/InertiaVueAdapterServiceProviderTest.php` — S
 
 2. **Shipped 2026-06-14: strengthen health readiness.** Health now verifies the registered adapter's package name, build path, and entrypoint, not only that a `vue` key exists. — `src/Health/InertiaVueAdapterHealthCheck.php`, `tests/Feature/InertiaVueAdapterServiceProviderTest.php` — S
 

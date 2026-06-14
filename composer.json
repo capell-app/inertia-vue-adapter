@@ -1,6 +1,6 @@
 {
     "name": "capell-app/inertia-vue-adapter",
-    "description": "Vue 3 client adapter for Capell Inertia.",
+    "description": "Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.",
     "type": "library",
     "license": "proprietary",
     "require": {

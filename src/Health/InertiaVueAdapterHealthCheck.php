@@ -17,7 +17,15 @@ final class InertiaVueAdapterHealthCheck implements ChecksExtensionHealth
 
     public function passes(): bool
     {
-        return app()->bound(InertiaAdapterRegistry::class)
-            && resolve(InertiaAdapterRegistry::class)->get(InertiaVueAdapterServiceProvider::ADAPTER_KEY) !== null;
+        if (! app()->bound(InertiaAdapterRegistry::class)) {
+            return false;
+        }
+
+        $adapter = resolve(InertiaAdapterRegistry::class)->get(InertiaVueAdapterServiceProvider::ADAPTER_KEY);
+
+        return $adapter !== null
+            && $adapter->packageName === InertiaVueAdapterServiceProvider::$packageName
+            && $adapter->buildPath === InertiaVueAdapterServiceProvider::BUILD_PATH
+            && $adapter->entrypoint === InertiaVueAdapterServiceProvider::ENTRYPOINT;
     }
 }

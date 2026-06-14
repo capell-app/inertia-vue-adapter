@@ -8,6 +8,7 @@ use Capell\Core\Data\VendorAssetData;
 use Capell\Core\Facades\CapellCore;
 use Capell\Core\Support\Assets\VendorAssetConditionRegistry;
 use Capell\Core\Support\Packages\AbstractPackageServiceProvider;
+use Capell\Inertia\Actions\ResolveInertiaAdapterKeyAction;
 use Capell\Inertia\Data\InertiaAdapterData;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Override;
@@ -79,7 +80,7 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
         resolve(VendorAssetConditionRegistry::class)->register(
             'capell-inertia-adapter-vue',
             fn (mixed $context): bool => ($context->runtime->usesInertia ?? false)
-                && config('capell-inertia.adapter', self::ADAPTER_KEY) === self::ADAPTER_KEY
+                && ResolveInertiaAdapterKeyAction::run() === self::ADAPTER_KEY
                 && ! CapellCore::isPackageInstalled(self::THEME_BOOKINGS_VUE_PACKAGE),
         );
     }

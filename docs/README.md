@@ -4,9 +4,10 @@ Start at the [package README](../README.md) when deciding whether to install thi
 
 ## Documents
 
-| Document                | Use                                                                     |
-| ----------------------- | ----------------------------------------------------------------------- |
-| [Overview](overview.md) | Non-technical package value, runtime boundaries, and developer surface. |
+| Document                                | Use                                                                     |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| [Overview](overview.md)                 | Non-technical package value, runtime boundaries, and developer surface. |
+| [Improvement plan](improvement-plan.md) | Current review findings, shipped slices, and follow-up roadmap.         |
 
 ## Related Packages
 

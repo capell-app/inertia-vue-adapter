@@ -6,7 +6,7 @@
 
 Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell plugin in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
 
-Vue 3 asset adapter for Capell Inertia pages and package routes.
+Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.
 
 After install, the package affects public rendering, public routes, or frontend runtime behaviour.
 
@@ -23,7 +23,7 @@ Status details:
 
 **For developers:** The package gives developers package-owned service providers instead of pushing this behaviour into core or application code.
 
-**For teams:** Vue 3 adapter for Capell Inertia.
+**For teams:** Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.
 
 ## Screens And Workflow
 

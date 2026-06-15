@@ -66,8 +66,8 @@ it('registers npm dependencies and the vue build entrypoint as vendor assets', f
     ]);
 });
 
-it('disables the generic vue build condition when the bookings vue component pack is installed', function (): void {
-    config()->set('capell-inertia.adapter', InertiaVueAdapterServiceProvider::ADAPTER_KEY);
+it('uses the shared adapter resolver for the vue build condition and disables it for the bookings vue component pack', function (): void {
+    config()->set('capell-inertia.adapter', ' vue ');
 
     $context = (object) [
         'runtime' => (object) [
@@ -78,6 +78,12 @@ it('disables the generic vue build condition when the bookings vue component pac
     $registry = resolve(VendorAssetConditionRegistry::class);
 
     expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
+
+    config()->set('capell-inertia.adapter', ['invalid']);
+
+    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
+
+    config()->set('capell-inertia.adapter', InertiaVueAdapterServiceProvider::ADAPTER_KEY);
 
     CapellCore::forcePackageInstalled(InertiaVueAdapterServiceProvider::THEME_BOOKINGS_VUE_PACKAGE);
 

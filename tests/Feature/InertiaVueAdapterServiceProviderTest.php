@@ -10,6 +10,7 @@ use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck;
 use Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider;
 use Capell\InertiaVueAdapter\Tests\InertiaVueAdapterTestCase;
+use Illuminate\Support\Facades\File;
 
 require_once __DIR__ . '/../../../inertia/src/Data/InertiaAdapterData.php';
 require_once __DIR__ . '/../../../inertia/src/Support/InertiaAdapterRegistry.php';
@@ -64,6 +65,22 @@ it('registers npm dependencies and the vue build entrypoint as vendor assets', f
         'path' => InertiaVueAdapterServiceProvider::BUILD_PATH,
         'file' => InertiaVueAdapterServiceProvider::ENTRYPOINT,
     ]);
+});
+
+it('keeps declared vue components aligned with the generic app component map', function (): void {
+    $adapter = resolve(InertiaAdapterRegistry::class)->get(InertiaVueAdapterServiceProvider::ADAPTER_KEY);
+    throw_if($adapter === null, RuntimeException::class, 'Vue adapter was not registered.');
+
+    $packagePath = dirname(__DIR__, 2);
+    $entrypoint = $packagePath . '/' . InertiaVueAdapterServiceProvider::ENTRYPOINT;
+    $appSource = File::get($entrypoint);
+
+    foreach ($adapter->components as $componentName) {
+        $componentPath = dirname($entrypoint) . '/Pages/' . $componentName . '.vue';
+
+        expect(File::exists($componentPath))->toBeTrue()
+            ->and($appSource)->toContain("'" . $componentName . "':");
+    }
 });
 
 it('uses the shared adapter resolver for the vue build condition and disables it for the bookings vue component pack', function (): void {

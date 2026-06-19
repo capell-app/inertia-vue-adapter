@@ -79,6 +79,7 @@ Docs gap: document extension points here if the package delegates persistence to
 ## Next Steps
 
 - [Package docs index](README.md)
+- [Screenshot contract](screenshots.json)
 - [Marketplace assets](assets/marketplace/)
 - [Capell content language plan](../../../docs/CONTENT_LANGUAGE_PLAN.md)
 - [Capell documentation design system](../../../docs/DESIGN_SYSTEM.md)

@@ -1,0 +1,9 @@
+{
+    "package": "inertia-vue-adapter",
+    "composerName": "capell-app/inertia-vue-adapter",
+    "generatedFor": "deployment-screenshot-runner",
+    "requiresInstalledPackage": true,
+    "outputDirectory": "packages/inertia-vue-adapter/docs/screenshots",
+    "entries": [],
+    "notes": "This adapter package registers Vue runtime support but owns no admin page, public page, or deterministic visual workflow. Screenshot proof belongs to Vue-backed theme packages that render actual Inertia pages."
+}

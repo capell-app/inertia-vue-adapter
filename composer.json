@@ -38,5 +38,9 @@
         "capell",
         "inertia",
         "vue"
-    ]
+    ],
+    "support": {
+        "source": "https://github.com/capell-app/capell-packages",
+        "docs": "https://docs.capell.app/packages/inertia-vue-adapter"
+    }
 }

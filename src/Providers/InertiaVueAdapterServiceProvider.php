@@ -14,7 +14,7 @@ use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Override;
 use Spatie\LaravelPackageTools\Package;
 
-class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
+final class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
 {
     public const string ADAPTER_KEY = 'vue';
 
@@ -47,7 +47,7 @@ class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvider
     #[Override]
     protected function isPackageInstalled(): bool
     {
-        return CapellCore::isPackageInstalled(static::$packageName);
+        return CapellCore::isPackageInstalled(self::$packageName);
     }
 
     private function registerAdapter(): void

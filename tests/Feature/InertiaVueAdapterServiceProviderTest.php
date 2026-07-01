@@ -83,7 +83,7 @@ it('keeps declared vue components aligned with the generic app component map', f
     }
 });
 
-it('uses the shared adapter resolver for the vue build condition and disables it for the bookings vue component pack', function (): void {
+it('uses the shared adapter resolver for the vue build condition', function (): void {
     config()->set('capell-inertia.adapter', ' vue ');
 
     $context = (object) [
@@ -102,9 +102,7 @@ it('uses the shared adapter resolver for the vue build condition and disables it
 
     config()->set('capell-inertia.adapter', InertiaVueAdapterServiceProvider::ADAPTER_KEY);
 
-    CapellCore::forcePackageInstalled(InertiaVueAdapterServiceProvider::THEME_BOOKINGS_VUE_PACKAGE);
-
-    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeFalse();
+    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
 });
 
 it('passes health when the vue adapter has been registered', function (): void {

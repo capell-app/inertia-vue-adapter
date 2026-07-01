@@ -14,4 +14,3 @@ Start at the [package README](../README.md) when deciding whether to install thi
 | Package                                                                         | Why it matters                                                                                    |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [Capell Inertia](../../inertia/docs/overview.md)                                | Provides the shared Inertia runtime bridge.                                                       |
-| [Theme Inertia Bookings Vue](../../theme-inertia-bookings-vue/docs/overview.md) | Provides booking-specific Vue components and suppresses the generic adapter build when installed. |

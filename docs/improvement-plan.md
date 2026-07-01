@@ -4,7 +4,6 @@
 
 ## 1. Snapshot
 
-The Vue adapter registers the `vue` adapter with the shared Capell Inertia bridge, contributes Vue/Vite NPM dependencies, and exposes a generic Vue application entrypoint at `resources/js/app.js`. It deliberately owns no database tables, admin resources, settings, commands, or routes. When a richer Vue theme package such as `theme-inertia-bookings-vue` is installed, this generic adapter build condition turns off so the theme can provide the concrete component pack.
 
 ## Completed Improvement Slices
 
@@ -28,7 +27,6 @@ The Vue adapter registers the `vue` adapter with the shared Capell Inertia bridg
 
 ## 4. Risks
 
-1. **Generic adapter suppression is package-name based.** The condition disables the generic build when `capell-app/theme-inertia-bookings-vue` is installed. If another full Vue theme becomes available, either register a broader suppressor contract or add explicit package keys.
 
 2. **Vue version is a public build contract.** NPM dependency versions are registered as vendor assets. Keep adapter package tests aligned with any Vue/Vite major bump.
 

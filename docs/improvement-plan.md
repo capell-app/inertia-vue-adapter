@@ -4,7 +4,6 @@
 
 ## 1. Snapshot
 
-
 ## Completed Improvement Slices
 
 - **2026-06-14:** Routed the vendor asset condition through the shared `ResolveInertiaAdapterKeyAction`, so trimmed adapter config and the default Vue fallback behave consistently across public props and asset registration. Tightened health checks to verify the registered adapter belongs to this package and points at the expected build entrypoint. Added this package-local plan and refreshed generated docs placeholders.
@@ -26,7 +25,6 @@
 - **No generated component map.** Components are registered manually in `app.js`; a generated map could remove drift once more page/component surfaces exist.
 
 ## 4. Risks
-
 
 2. **Vue version is a public build contract.** NPM dependency versions are registered as vendor assets. Keep adapter package tests aligned with any Vue/Vite major bump.
 

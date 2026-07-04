@@ -11,6 +11,6 @@ Start at the [package README](../README.md) when deciding whether to install thi
 
 ## Related Packages
 
-| Package                                                                         | Why it matters                                                                                    |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [Capell Inertia](../../inertia/docs/overview.md)                                | Provides the shared Inertia runtime bridge.                                                       |
+| Package                                          | Why it matters                              |
+| ------------------------------------------------ | ------------------------------------------- |
+| [Capell Inertia](../../inertia/docs/overview.md) | Provides the shared Inertia runtime bridge. |

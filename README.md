@@ -2,9 +2,9 @@
 
 <!-- prettier-ignore-start -->
 
-## What This Plugin Adds
+## What This Extension Adds
 
-Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell plugin in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
+Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell extension in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
 
 Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.
 

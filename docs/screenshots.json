@@ -4,6 +4,8 @@
     "generatedFor": "deployment-screenshot-runner",
     "requiresInstalledPackage": true,
     "outputDirectory": "packages/inertia-vue-adapter/docs/screenshots",
+    "auditStatus": "visual-exempt",
+    "auditReason": "Runtime adapter package with no owned admin page, public page, or deterministic visual workflow.",
     "entries": [],
     "notes": "This adapter package registers Vue runtime support but owns no admin page, public page, or deterministic visual workflow. Screenshot proof belongs to Vue-backed theme packages that render actual Inertia pages."
 }

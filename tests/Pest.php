@@ -11,4 +11,4 @@ require_once __DIR__ . '/../src/Health/InertiaVueAdapterHealthCheck.php';
 require_once __DIR__ . '/../src/Providers/InertiaVueAdapterServiceProvider.php';
 require_once __DIR__ . '/InertiaVueAdapterTestCase.php';
 
-pest()->extend(InertiaVueAdapterTestCase::class)->group('inertia-vue-adapter')->in(__DIR__);
+pest()->extend(InertiaVueAdapterTestCase::class)->group('inertia-vue-adapter')->in('.');

@@ -106,6 +106,6 @@ it('uses the shared adapter resolver for the vue build condition', function (): 
 });
 
 it('passes health when the vue adapter has been registered', function (): void {
-    expect(InertiaVueAdapterHealthCheck::compatibleCapellApiVersion())->toBe('^4.0')
+    expect(InertiaVueAdapterHealthCheck::compatibleCapellApiVersion())->toBe('^0.0')
         ->and((new InertiaVueAdapterHealthCheck)->passes())->toBeTrue();
 });

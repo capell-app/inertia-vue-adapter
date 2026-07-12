@@ -4,7 +4,7 @@
     "slug": "inertia-vue-adapter",
     "displayName": "Capell Inertia Vue Adapter",
     "kind": "plugin",
-    "capellApiVersion": "^0.0",
+    "capellApiVersion": "^4.0",
     "version": "0.0.x-dev",
     "description": "Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.",
     "product": {

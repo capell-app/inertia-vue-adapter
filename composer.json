@@ -1,0 +1,46 @@
+{
+    "name": "capell-app/inertia-vue-adapter",
+    "description": "Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "capell-app/core": "^0.0.4 || 0.0.x-dev",
+        "capell-app/inertia": "^0.0.4 || 0.0.x-dev",
+        "spatie/laravel-package-tools": "^1.14.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Capell\\InertiaVueAdapter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Capell\\InertiaVueAdapter\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Capell\\InertiaVueAdapter\\Providers\\InertiaVueAdapterServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true,
+    "homepage": "https://github.com/capell-app/inertia-vue-adapter",
+    "keywords": [
+        "capell",
+        "inertia",
+        "vue"
+    ],
+    "support": {
+        "source": "https://github.com/capell-app/capell-packages",
+        "docs": "https://docs.capell.app/packages/inertia-vue-adapter"
+    }
+}

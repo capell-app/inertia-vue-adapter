@@ -1,0 +1,118 @@
+{
+    "manifest-version": 3,
+    "name": "capell-app/inertia-vue-adapter",
+    "slug": "inertia-vue-adapter",
+    "displayName": "Capell Inertia Vue Adapter",
+    "kind": "plugin",
+    "capellApiVersion": "^0.0.1",
+    "version": "0.0.x-dev",
+    "description": "Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.",
+    "product": {
+        "group": "Capell Frontend",
+        "tier": "core",
+        "bundle": "frontend"
+    },
+    "namespace": "Capell\\InertiaVueAdapter",
+    "surfaces": ["frontend"],
+    "dependencies": {
+        "requires": ["capell-app/core", "capell-app/inertia"],
+        "supports": [],
+        "conflicts": []
+    },
+    "providers": {
+        "metadata": [],
+        "install": [],
+        "runtime": [
+            "Capell\\InertiaVueAdapter\\Providers\\InertiaVueAdapterServiceProvider"
+        ],
+        "admin": [],
+        "frontend": []
+    },
+    "contributes": [],
+    "database": {
+        "migrations": false,
+        "settings": false,
+        "requiredTables": []
+    },
+    "commands": {
+        "install": null,
+        "setup": null,
+        "demo": null,
+        "doctor": null
+    },
+    "settings": [],
+    "permissions": [],
+    "capabilities": ["inertia-adapter-vue"],
+    "security": {
+        "riskTier": "low",
+        "publicSurface": {
+            "routeNames": [],
+            "auth": "none",
+            "csrfExemptRoutes": [],
+            "signedRoutes": [],
+            "tokenizedRoutes": [],
+            "webhookRoutes": [],
+            "throttledRoutes": []
+        },
+        "sensitiveData": {
+            "encryptedFields": [],
+            "hashedTokenFields": [],
+            "redactedOutputClasses": [],
+            "plaintextJustifications": []
+        },
+        "publicOutput": {
+            "cacheSafe": true,
+            "forbidAuthoringSurface": true,
+            "forbidSecrets": true,
+            "forbidPublicBladeQueries": true
+        },
+        "externalHttpClients": {
+            "requiresTimeouts": false,
+            "requiresSecretRedaction": false,
+            "clients": []
+        },
+        "adminSurface": {
+            "authorization": "none",
+            "permissions": []
+        }
+    },
+    "performance": {
+        "frontendRenderBudgetMs": 20,
+        "adminQueryBudget": 0,
+        "cacheTags": ["inertia-vue"],
+        "cacheSafety": {
+            "cacheable": false,
+            "variesBy": ["site", "locale"],
+            "sensitiveOutput": false,
+            "invalidationSources": [],
+            "queueInvalidation": false
+        }
+    },
+    "healthChecks": [
+        {
+            "key": "inertia-vue-adapter.package-health",
+            "label": "Capell Inertia Vue adapter is registered.",
+            "class": "Capell\\InertiaVueAdapter\\Health\\InertiaVueAdapterHealthCheck",
+            "severity": "important",
+            "surface": "frontend"
+        }
+    ],
+    "commercial": {
+        "proposedLicense": "included",
+        "requestedCertification": "first-party",
+        "supportPolicy": "standard",
+        "privateDocsRequested": false
+    },
+    "marketplace": {
+        "summary": "Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.",
+        "description": "Registers Vue 3 NPM dependencies, the Capell Inertia Vue application entrypoint, and the vue adapter metadata consumed by the shared bridge.",
+        "screenshots": [
+            {
+                "path": "docs/assets/marketplace/extension-card.jpg",
+                "alt": "Capell Inertia Vue adapter beta marketplace artwork",
+                "caption": "Beta artwork for the Vue runtime adapter; rendered proof belongs to a consuming Vue page or theme."
+            }
+        ],
+        "categories": ["frontend", "developer-tools"]
+    }
+}

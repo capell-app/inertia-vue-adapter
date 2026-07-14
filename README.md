@@ -6,9 +6,11 @@
 
 Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell plugin in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
 
-Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.
+The Vue adapter registers a Vue client runtime with the shared Capell Inertia bridge.
 
-After install, the package affects public rendering, public routes, or frontend runtime behaviour.
+It adds no admin screen. Vue-based Inertia themes can use the registered entrypoint and client runtime when they render public pages.
+
+Evidence: [`src/Providers/InertiaVueAdapterServiceProvider.php`](src/Providers/InertiaVueAdapterServiceProvider.php), [`tests/Feature/InertiaVueAdapterServiceProviderTest.php`](tests/Feature/InertiaVueAdapterServiceProviderTest.php), [`capell.json`](capell.json), [`docs/overview.admin.md`](docs/overview.admin.md).
 
 Status details:
 
@@ -21,9 +23,11 @@ Status details:
 
 ## Why It Matters
 
-**For developers:** The package gives developers package-owned service providers instead of pushing this behaviour into core or application code.
+**For developers:** The provider supplies the adapter definition and assets expected by Capell Inertia, so themes do not need their own bridge wiring.
 
-**For teams:** Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.
+**For teams:** Teams can choose a Vue Inertia theme without changing how editors manage Capell content.
+
+Evidence: [`src/Providers/InertiaVueAdapterServiceProvider.php`](src/Providers/InertiaVueAdapterServiceProvider.php), [`tests/Feature/InertiaVueAdapterServiceProviderTest.php`](tests/Feature/InertiaVueAdapterServiceProviderTest.php), [`docs/overview.admin.md`](docs/overview.admin.md), [`capell.json`](capell.json).
 
 ## Screens And Workflow
 
@@ -41,25 +45,27 @@ Marketplace media is declared in `capell.json`:
 
 ## Data Model
 
-This package has no schema impact. It does not declare package-owned migrations or required tables.
-
-Docs gap: document extension points here if the package delegates persistence to a host package.
+This package has no schema impact. It registers runtime behaviour through `Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider` while persistence remains with Capell core or required packages.
 
 ## Install Impact
 
-- Admin navigation: no admin surface declared.
+- Required packages: `capell-app/core`, `capell-app/inertia`.
+- Admin navigation: no admin page or resource contribution is declared.
+- Admin/editor extensions: none declared.
 - Permissions: none declared in `capell.json`.
-- Public routes: none detected in package route files.
+- Public routes: none declared.
 - Database changes: no package migrations declared.
+- Config: no package config files.
 - Settings: no package settings declared.
-- Queues or schedules: none detected in standard package paths.
+- Queues or schedules: none declared.
 - Cache tags: `inertia-vue`.
 - Commands: none declared.
 
 ## Common Pitfalls
 
+- Keep required Capell packages on compatible v4 releases: `capell-app/core`, `capell-app/inertia`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
-- Keep `composer.json`, `composer.local.json`, `capell.json`, docs, screenshots, and tests aligned when the package surface changes.
+- Custom write integrations must preserve invalidation for `inertia-vue` cache tags.
 
 ## Troubleshooting
 
@@ -71,13 +77,14 @@ Docs gap: document extension points here if the package delegates persistence to
 ## Quick Start
 
 1. Install the package: `composer require capell-app/inertia-vue-adapter`.
-2. Run the required setup: no package migrations are declared; clear cached config and routes if the host app uses caches.
-3. Verify the package provider is registered and the related frontend, command, or extension point is active.
+2. No package-specific setup command or migrations are declared.
+3. Verify the package provider and manifest contributions are registered in the host app.
 
 ## Next Steps
 
 - [Package docs](docs/README.md)
 - [Overview](docs/overview.md)
+- [Troubleshooting](#troubleshooting)
 - [Screenshot contract](docs/screenshots.json)
 - [Marketplace assets](docs/assets/marketplace/)
 - [Capell content language plan](../../docs/CONTENT_LANGUAGE_PLAN.md)

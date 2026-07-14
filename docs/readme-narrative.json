@@ -1,0 +1,31 @@
+{
+    "whatThisPluginAdds": {
+        "text": "The Vue adapter registers a Vue client runtime with the shared Capell Inertia bridge.",
+        "evidence": [
+            "src/Providers/InertiaVueAdapterServiceProvider.php",
+            "tests/Feature/InertiaVueAdapterServiceProviderTest.php",
+            "capell.json"
+        ]
+    },
+    "surfaceOutcome": {
+        "text": "It adds no admin screen. Vue-based Inertia themes can use the registered entrypoint and client runtime when they render public pages.",
+        "evidence": [
+            "docs/overview.admin.md",
+            "src/Providers/InertiaVueAdapterServiceProvider.php",
+            "tests/Feature/InertiaVueAdapterServiceProviderTest.php"
+        ]
+    },
+    "whyItMatters": {
+        "developers": {
+            "text": "The provider supplies the adapter definition and assets expected by Capell Inertia, so themes do not need their own bridge wiring.",
+            "evidence": [
+                "src/Providers/InertiaVueAdapterServiceProvider.php",
+                "tests/Feature/InertiaVueAdapterServiceProviderTest.php"
+            ]
+        },
+        "teams": {
+            "text": "Teams can choose a Vue Inertia theme without changing how editors manage Capell content.",
+            "evidence": ["docs/overview.admin.md", "capell.json"]
+        }
+    }
+}

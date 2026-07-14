@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-use Capell\Core\Data\VendorAssetData;
-use Capell\Core\Enums\VendorAssetEnum;
-use Capell\Core\Facades\CapellCore;
-use Capell\Core\Support\Assets\VendorAssetConditionRegistry;
+use Capell\Frontend\Data\Assets\FrontendPackageDependencyData;
+use Capell\Frontend\Data\Assets\ViteResourceSourceData;
+use Capell\Frontend\Data\FrontendResourceContextData;
+use Capell\Frontend\Data\FrontendRuntimeManifestData;
+use Capell\Frontend\Enums\FrontendPackageDependencyType;
+use Capell\Frontend\Enums\RenderingStrategyEnum;
+use Capell\Frontend\Support\Assets\FrontendPackageDependencyRegistry;
+use Capell\Frontend\Support\Assets\FrontendViteInputRegistry;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck;
 use Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider;
+use Capell\InertiaVueAdapter\Support\InertiaVueFrontendResourceContributor;
 use Capell\InertiaVueAdapter\Tests\InertiaVueAdapterTestCase;
 use Illuminate\Support\Facades\File;
 
@@ -42,29 +47,26 @@ it('registers the vue adapter with the inertia bridge', function (): void {
         ]);
 });
 
-it('registers npm dependencies and the vue build entrypoint as vendor assets', function (): void {
-    $npmDependencies = CapellCore::getVendorAssetsForType(VendorAssetEnum::NpmDependency)
-        ->filter(static fn (VendorAssetData $asset): bool => $asset->packageName === InertiaVueAdapterServiceProvider::$packageName)
-        ->mapWithKeys(static fn (VendorAssetData $asset): array => [$asset->dependencyName() => $asset->dependencyVersion()])
+it('registers typed dependencies and the conditional Vue Vite entry', function (): void {
+    $dependencies = collect(resolve(FrontendPackageDependencyRegistry::class)->all())
+        ->mapWithKeys(static fn (FrontendPackageDependencyData $dependency): array => [$dependency->name => [$dependency->versionConstraint, $dependency->type]])
         ->all();
 
-    $buildAssets = CapellCore::getVendorAssetsForType(VendorAssetEnum::BuildAsset)
-        ->filter(static fn (VendorAssetData $asset): bool => $asset->packageName === InertiaVueAdapterServiceProvider::$packageName)
-        ->map(static fn (VendorAssetData $asset): array => [
-            'path' => $asset->path(),
-            'file' => $asset->file(),
-        ])
-        ->values()
-        ->all();
+    expect($dependencies)->toBe([
+        '@inertiajs/vue3' => ['^3.0.0', FrontendPackageDependencyType::Runtime],
+        '@vitejs/plugin-vue' => ['^6.0.0', FrontendPackageDependencyType::Development],
+        'vue' => ['^3.5.0', FrontendPackageDependencyType::Runtime],
+    ])->and(resolve(FrontendViteInputRegistry::class)->all())
+        ->toContain(InertiaVueAdapterServiceProvider::VITE_INPUT);
 
-    expect($npmDependencies)->toBe([
-        '@inertiajs/vue3' => '^3.0.0',
-        '@vitejs/plugin-vue' => '^6.0.0',
-        'vue' => '^3.5.0',
-    ])->and($buildAssets)->toContain([
-        'path' => InertiaVueAdapterServiceProvider::BUILD_PATH,
-        'file' => InertiaVueAdapterServiceProvider::ENTRYPOINT,
-    ]);
+    config()->set('capell-inertia.adapter', 'vue');
+    $runtime = FrontendRuntimeManifestData::forRenderingStrategy(RenderingStrategyEnum::BladeOnly);
+    $runtime->usesInertia = true;
+    $resources = resolve(InertiaVueFrontendResourceContributor::class)->resources(new FrontendResourceContextData(null, null, null, null, null, $runtime));
+
+    expect($resources)->toHaveCount(1)
+        ->and($resources[0]->resource->source)->toBeInstanceOf(ViteResourceSourceData::class)
+        ->and($resources[0]->resource->source->entry)->toBe(InertiaVueAdapterServiceProvider::VITE_INPUT);
 });
 
 it('keeps declared vue components aligned with the generic app component map', function (): void {
@@ -81,28 +83,6 @@ it('keeps declared vue components aligned with the generic app component map', f
         expect(File::exists($componentPath))->toBeTrue()
             ->and($appSource)->toContain("'" . $componentName . "':");
     }
-});
-
-it('uses the shared adapter resolver for the vue build condition', function (): void {
-    config()->set('capell-inertia.adapter', ' vue ');
-
-    $context = (object) [
-        'runtime' => (object) [
-            'usesInertia' => true,
-        ],
-    ];
-
-    $registry = resolve(VendorAssetConditionRegistry::class);
-
-    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
-
-    config()->set('capell-inertia.adapter', ['invalid']);
-
-    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
-
-    config()->set('capell-inertia.adapter', InertiaVueAdapterServiceProvider::ADAPTER_KEY);
-
-    expect($registry->passes('capell-inertia-adapter-vue', $context))->toBeTrue();
 });
 
 it('passes health when the vue adapter has been registered', function (): void {

@@ -10,8 +10,6 @@ The Vue adapter registers a Vue client runtime with the shared Capell Inertia br
 
 It adds no admin screen. Vue-based Inertia themes can use the registered entrypoint and client runtime when they render public pages.
 
-Evidence: [`src/Providers/InertiaVueAdapterServiceProvider.php`](src/Providers/InertiaVueAdapterServiceProvider.php), [`tests/Feature/InertiaVueAdapterServiceProviderTest.php`](tests/Feature/InertiaVueAdapterServiceProviderTest.php), [`capell.json`](capell.json), [`docs/overview.admin.md`](docs/overview.admin.md).
-
 Status details:
 
 - Status: Available
@@ -26,8 +24,6 @@ Status details:
 **For developers:** The provider supplies the adapter definition and assets expected by Capell Inertia, so themes do not need their own bridge wiring.
 
 **For teams:** Teams can choose a Vue Inertia theme without changing how editors manage Capell content.
-
-Evidence: [`src/Providers/InertiaVueAdapterServiceProvider.php`](src/Providers/InertiaVueAdapterServiceProvider.php), [`tests/Feature/InertiaVueAdapterServiceProviderTest.php`](tests/Feature/InertiaVueAdapterServiceProviderTest.php), [`docs/overview.admin.md`](docs/overview.admin.md), [`capell.json`](capell.json).
 
 ## Screens And Workflow
 
@@ -86,7 +82,7 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 ## Quick Start
 
 1. Install the package: `composer require capell-app/inertia-vue-adapter`.
-2. Open `/screenshot-fixtures/catalogue/inertia-vue-adapter/inertia-vue-adapter-catalogue-preview` and confirm the public output renders without admin state.
+2. Verify the package provider and manifest contributions are registered in the host app.
 
 ## Next Steps
 
@@ -99,6 +95,5 @@ This package has no schema impact. It registers runtime behaviour through `Capel
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
 - Related packages: [Inertia](../inertia/README.md).
-- Focused tests: `vendor/bin/pest packages/inertia-vue-adapter/tests --configuration=phpunit.xml`.
 
 <!-- prettier-ignore-end -->

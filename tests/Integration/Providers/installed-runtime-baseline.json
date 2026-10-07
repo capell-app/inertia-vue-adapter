@@ -1,0 +1,40 @@
+{
+    "version": 3,
+    "package": "inertia-vue-adapter",
+    "scenarios": {
+        "default": {
+            "source": {
+                "ref": "origin/main",
+                "commit": "646068b2d21e233ea517c342d62bc0eca1762192",
+                "providers": {
+                    "Providers/InertiaVueAdapterServiceProvider.php": "42198b15954e0219d674d46237a93672978001f0035b1351c03c16703f19084f"
+                }
+            },
+            "disabledContributions": [],
+            "surfaces": {
+                "routes": [],
+                "livewire": [],
+                "filament": [],
+                "listeners": [],
+                "gates": [],
+                "policies": [],
+                "commands": [],
+                "view-namespaces": [],
+                "config-keys": [],
+                "migrations": []
+            },
+            "uninstalledSurfaces": {
+                "routes": [],
+                "livewire": [],
+                "filament": [],
+                "listeners": [],
+                "gates": [],
+                "policies": [],
+                "commands": [],
+                "view-namespaces": [],
+                "config-keys": [],
+                "migrations": []
+            }
+        }
+    }
+}

@@ -31,17 +31,15 @@ final class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvi
 
     public static string $packageName = 'capell-app/inertia-vue-adapter';
 
+    #[Override]
     public function configurePackage(Package $package): void
     {
         $package->name(self::$name);
     }
 
-    public function packageBooted(): void
+    #[Override]
+    protected function bootInstalledRuntime(): void
     {
-        if (! $this->isPackageInstalled()) {
-            return;
-        }
-
         $this->registerAdapter();
         $this->registerFrontendResources();
     }

@@ -53,6 +53,16 @@ it('registers typed dependencies and the conditional Vue Vite entry', function (
         ->all();
 
     expect($dependencies)->toBe([
+        '@tailwindcss/typography' => ['^0.5.9', FrontendPackageDependencyType::Runtime],
+        '@tailwindcss/vite' => ['^4.0.13', FrontendPackageDependencyType::Runtime],
+        'autoprefixer' => ['^10.4.13', FrontendPackageDependencyType::Runtime],
+        'swiper' => ['^12.1.2', FrontendPackageDependencyType::Runtime],
+        'fontaine' => ['^0.8.0', FrontendPackageDependencyType::Runtime],
+        'laravel-vite-plugin' => ['^3.1.3', FrontendPackageDependencyType::Runtime],
+        'npm-run-all' => ['^4.1.5', FrontendPackageDependencyType::Runtime],
+        'tailwindcss' => ['^4.0.14', FrontendPackageDependencyType::Runtime],
+        'vanilla-lazyload' => ['^19.1.3', FrontendPackageDependencyType::Runtime],
+        'vite' => ['^8.0', FrontendPackageDependencyType::Runtime],
         '@inertiajs/vue3' => ['^3.0.0', FrontendPackageDependencyType::Runtime],
         '@vitejs/plugin-vue' => ['^6.0.0', FrontendPackageDependencyType::Development],
         'vue' => ['^3.5.0', FrontendPackageDependencyType::Runtime],
@@ -62,6 +72,7 @@ it('registers typed dependencies and the conditional Vue Vite entry', function (
     config()->set('capell-inertia.adapter', 'vue');
     $runtime = FrontendRuntimeManifestData::forRenderingStrategy(RenderingStrategyEnum::BladeOnly);
     $runtime->usesInertia = true;
+
     $resources = resolve(InertiaVueFrontendResourceContributor::class)->resources(new FrontendResourceContextData(null, null, null, null, null, $runtime));
     $source = $resources[0]->resource->source;
 

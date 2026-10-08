@@ -15,7 +15,11 @@
     "namespace": "Capell\\InertiaVueAdapter",
     "surfaces": ["frontend"],
     "dependencies": {
-        "requires": ["capell-app/core", "capell-app/inertia"],
+        "requires": [
+            "capell-app/core",
+            "capell-app/frontend",
+            "capell-app/inertia"
+        ],
         "supports": [],
         "conflicts": []
     },

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Capell\InertiaVueAdapter\Providers;
 
-use Capell\Core\Facades\CapellCore;
 use Capell\Core\Support\Packages\AbstractPackageServiceProvider;
 use Capell\Frontend\Contracts\FrontendResourceContributor;
 use Capell\Frontend\Data\Assets\FrontendPackageDependencyData;
@@ -44,50 +43,38 @@ final class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvi
         $this->registerFrontendResources();
     }
 
-    #[Override]
-    protected function isPackageInstalled(): bool
-    {
-        return CapellCore::isPackageInstalled(self::$packageName);
-    }
-
     private function registerAdapter(): void
     {
         $configure = fn (InertiaAdapterRegistry $registry): InertiaAdapterRegistry => $registry->register($this->adapterData());
 
-        $this->app->afterResolving(InertiaAdapterRegistry::class, $configure);
-
-        if ($this->app->resolved(InertiaAdapterRegistry::class)) {
-            $configure($this->app->make(InertiaAdapterRegistry::class));
-        }
+        $this->callAfterResolving(InertiaAdapterRegistry::class, $configure);
     }
 
     private function registerFrontendResources(): void
     {
         $registerDependencies = function (FrontendPackageDependencyRegistry $registry): void {
             foreach ($this->adapterData()->npmDependencies as $package => $version) {
+                $type = str_starts_with($package, '@vitejs/') ? FrontendPackageDependencyType::Development : FrontendPackageDependencyType::Runtime;
+
+                if (array_any($registry->all(), static fn (FrontendPackageDependencyData $dependency): bool => $dependency->package === self::$packageName && $dependency->name === $package && $dependency->versionConstraint === $version && $dependency->type === $type)) {
+                    continue;
+                }
+
                 $registry->register(new FrontendPackageDependencyData(
                     name: $package,
                     versionConstraint: $version,
-                    type: str_starts_with($package, '@vitejs/') ? FrontendPackageDependencyType::Development : FrontendPackageDependencyType::Runtime,
+                    type: $type,
                     package: self::$packageName,
                 ));
             }
         };
 
-        $this->app->afterResolving(FrontendPackageDependencyRegistry::class, $registerDependencies);
-
-        if ($this->app->resolved(FrontendPackageDependencyRegistry::class)) {
-            $registerDependencies($this->app->make(FrontendPackageDependencyRegistry::class));
-        }
+        $this->callAfterResolving(FrontendPackageDependencyRegistry::class, $registerDependencies);
 
         $registerInput = static function (FrontendViteInputRegistry $registry): void {
             $registry->register(self::VITE_INPUT, self::$packageName);
         };
-        $this->app->afterResolving(FrontendViteInputRegistry::class, $registerInput);
-
-        if ($this->app->resolved(FrontendViteInputRegistry::class)) {
-            $registerInput($this->app->make(FrontendViteInputRegistry::class));
-        }
+        $this->callAfterResolving(FrontendViteInputRegistry::class, $registerInput);
 
         $this->app->tag(InertiaVueFrontendResourceContributor::class, FrontendResourceContributor::TAG);
     }

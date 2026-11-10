@@ -109,7 +109,23 @@
     },
     "marketplace": {
         "summary": "Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.",
-        "description": "Registers Vue 3 NPM dependencies, the Capell Inertia Vue application entrypoint, and the vue adapter metadata consumed by the shared bridge.",
+        "description": "Registers Vue 3 NPM dependencies, the Capell Inertia Vue application entrypoint, and the vue adapter metadata consumed by the shared bridge. Choose it only when your frontend is built with Vue; it requires Capell Inertia and adds no screens to the admin.",
+        "problem": "Our Vue theme cannot use Capell pages until its client runtime is connected.",
+        "outcome": "A Vue Inertia theme can use the registered runtime to render public pages.",
+        "faq": [
+            {
+                "question": "Will editors change their content workflow?",
+                "answer": "Teams can choose a Vue Inertia theme without changing how editors manage Capell content."
+            },
+            {
+                "question": "What does the Vue adapter provide to themes?",
+                "answer": "It registers the Vue client runtime and entrypoint used by Vue-based Inertia themes."
+            },
+            {
+                "question": "Are there adapter settings in the admin?",
+                "answer": "The package declares no admin page or package settings."
+            }
+        ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",

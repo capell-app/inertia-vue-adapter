@@ -10,6 +10,7 @@ use Capell\Frontend\Enums\FrontendPackageDependencyType;
 use Capell\Frontend\Enums\RenderingStrategyEnum;
 use Capell\Frontend\Support\Assets\FrontendPackageDependencyRegistry;
 use Capell\Frontend\Support\Assets\FrontendViteInputRegistry;
+use Capell\Frontend\Support\Assets\FrontendVitePluginRegistry;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Capell\InertiaVueAdapter\Health\InertiaVueAdapterHealthCheck;
 use Capell\InertiaVueAdapter\Providers\InertiaVueAdapterServiceProvider;
@@ -67,7 +68,12 @@ it('registers typed dependencies and the conditional Vue Vite entry', function (
         '@vitejs/plugin-vue' => ['^6.0.0', FrontendPackageDependencyType::Development],
         'vue' => ['^3.5.0', FrontendPackageDependencyType::Runtime],
     ])->and(resolve(FrontendViteInputRegistry::class)->all())
-        ->toContain(InertiaVueAdapterServiceProvider::VITE_INPUT);
+        ->toContain(InertiaVueAdapterServiceProvider::VITE_INPUT)
+        // Without the Vue plugin the application build cannot parse the registered `.vue` entry point.
+        ->and(resolve(FrontendVitePluginRegistry::class)->all())->toContain([
+            'module' => '@vitejs/plugin-vue',
+            'options' => ['template' => ['transformAssetUrls' => ['base' => null, 'includeAbsolute' => false]]],
+        ]);
 
     config()->set('capell-inertia.adapter', 'vue');
     $runtime = FrontendRuntimeManifestData::forRenderingStrategy(RenderingStrategyEnum::BladeOnly);

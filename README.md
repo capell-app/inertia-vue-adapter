@@ -2,27 +2,25 @@
 
 <!-- prettier-ignore-start -->
 
-## What It Does
+Your Vue developers get Capell pages as Vue 3 components, so they build on what Capell sends instead of writing a page client from scratch. Vue is the adapter Capell Inertia uses until told otherwise. Choosing it needs no setting, only installing it.
 
-The Vue adapter registers a Vue client runtime with the shared Capell Inertia bridge.
+The build needs Vue 3.5, Inertia's Vue library and Vite's Vue integration, and the adapter declares all three for you. Page and widget HTML is cleaned on the server before Vue draws it. The components carry class names such as capell-inertia-page but no styles, so your stylesheet decides the look.
+
+Three widget types have components of their own, which are content, image and title. Any other type is drawn by the content component, and that shows only its title and content. A page shows its title, its content and every layout container, with each widget drawn by its component.
 
 - **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/inertia-vue-adapter).
 - **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/inertia-vue-adapter).
 - **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0.2`, `capell-app/inertia ^1.0`, `spatie/laravel-package-tools ^1.14.1`.
 - **Install:** `composer require capell-app/inertia-vue-adapter`.
 
-It adds no admin screen. Vue-based Inertia themes can use the registered entrypoint and client runtime when they render public pages.
-
-## Who It Is For
-
-**For developers:** The provider supplies the adapter definition and assets expected by Capell Inertia, so themes do not need their own bridge wiring.
-
-**For teams:** Teams can choose a Vue Inertia theme without changing how editors manage Capell content.
-
 ## Quick Start
 
 1. Install the package: `composer require capell-app/inertia-vue-adapter`.
 2. Verify the package provider and manifest contributions are registered in the host app.
+
+## For Developers
+
+The provider supplies the adapter definition and assets expected by Capell Inertia, so themes do not need their own bridge wiring.
 
 ## Configure
 

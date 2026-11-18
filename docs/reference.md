@@ -6,7 +6,7 @@ Developer reference for `capell-app/inertia-vue-adapter`. Start with the [README
 
 ## Package Details
 
-Capell Inertia Vue Adapter is an **Available**, **No schema impact** Capell plugin in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
+Capell Inertia Vue Adapter is an **Available** Capell extension in the **Capell Frontend** product group. It ships as `capell-app/inertia-vue-adapter` and extends these surfaces: frontend.
 
 - Status: Available
 - Tier: core

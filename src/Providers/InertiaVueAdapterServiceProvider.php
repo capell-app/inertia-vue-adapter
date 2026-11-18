@@ -10,6 +10,7 @@ use Capell\Frontend\Data\Assets\FrontendPackageDependencyData;
 use Capell\Frontend\Enums\FrontendPackageDependencyType;
 use Capell\Frontend\Support\Assets\FrontendPackageDependencyRegistry;
 use Capell\Frontend\Support\Assets\FrontendViteInputRegistry;
+use Capell\Frontend\Support\Assets\FrontendVitePluginRegistry;
 use Capell\Inertia\Data\InertiaAdapterData;
 use Capell\Inertia\Support\InertiaAdapterRegistry;
 use Capell\InertiaVueAdapter\Support\InertiaVueFrontendResourceContributor;
@@ -25,6 +26,11 @@ final class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvi
     public const string ENTRYPOINT = 'resources/js/app.js';
 
     public const string VITE_INPUT = 'vendor/capell-app/inertia-vue-adapter/resources/js/app.js';
+
+    public const string VITE_PLUGIN = '@vitejs/plugin-vue';
+
+    /** @var array<string, mixed> */
+    public const array VITE_PLUGIN_OPTIONS = ['template' => ['transformAssetUrls' => ['base' => null, 'includeAbsolute' => false]]];
 
     public static string $name = 'capell-inertia-vue-adapter';
 
@@ -75,6 +81,13 @@ final class InertiaVueAdapterServiceProvider extends AbstractPackageServiceProvi
             $registry->register(self::VITE_INPUT, self::$packageName);
         };
         $this->callAfterResolving(FrontendViteInputRegistry::class, $registerInput);
+
+        // The `.vue` entry point only compiles with Vite's Vue plugin. Leaving asset URLs untouched lets
+        // laravel-vite-plugin resolve them, as Laravel's own Vue starter does.
+        $registerPlugin = static function (FrontendVitePluginRegistry $registry): void {
+            $registry->register(self::VITE_PLUGIN, self::$packageName, self::VITE_PLUGIN_OPTIONS);
+        };
+        $this->callAfterResolving(FrontendVitePluginRegistry::class, $registerPlugin);
 
         $this->app->tag(InertiaVueFrontendResourceContributor::class, FrontendResourceContributor::TAG);
     }

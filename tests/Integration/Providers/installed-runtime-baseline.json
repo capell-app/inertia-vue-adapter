@@ -5,9 +5,9 @@
         "default": {
             "source": {
                 "ref": "HEAD",
-                "commit": "adac26b4ce1e9e1de545f68a1ff272ff73111696",
+                "commit": "3df5cbf192ccdcd73f81c478c03d96b3beaaa74b",
                 "providers": {
-                    "Providers/InertiaVueAdapterServiceProvider.php": "597a6b9f0add715be595105a9579eb5d489f58621f8a8fe7cb02c7fe49c13a96"
+                    "Providers/InertiaVueAdapterServiceProvider.php": "700dc5aa913cb6e117b6cf88578b058698c5e764c4309c36d9c2bf154c2cbc36"
                 },
                 "configure": null
             },
@@ -59,6 +59,21 @@
                     "Capell\\Frontend\\Support\\Assets\\FrontendViteInputRegistry": {
                         "items": {
                             "capell-app/inertia-vue-adapter|vendor/capell-app/inertia-vue-adapter/resources/js/app.js": "vendor/capell-app/inertia-vue-adapter/resources/js/app.js"
+                        }
+                    },
+                    "Capell\\Frontend\\Support\\Assets\\FrontendVitePluginRegistry": {
+                        "items": {
+                            "capell-app/inertia-vue-adapter|@vitejs/plugin-vue": {
+                                "module": "@vitejs/plugin-vue",
+                                "options": {
+                                    "template": {
+                                        "transformAssetUrls": {
+                                            "base": null,
+                                            "includeAbsolute": false
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     "Capell\\Inertia\\Support\\InertiaAdapterRegistry": {

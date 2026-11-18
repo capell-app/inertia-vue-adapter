@@ -6,7 +6,7 @@
     "kind": "plugin",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
-    "description": "Vue 3 client adapter for Capell Inertia pages, package routes, and adapter-driven themes.",
+    "description": "Vue 3 client for Capell pages with page, content, image and title components, the default choice for Vue front ends.",
     "product": {
         "group": "Capell Frontend",
         "tier": "core",
@@ -46,7 +46,7 @@
     },
     "settings": [],
     "permissions": [],
-    "capabilities": ["inertia-adapter-vue"],
+    "capabilities": ["frontend-rendering", "frontend-assets"],
     "security": {
         "riskTier": "low",
         "publicSurface": {
@@ -108,29 +108,33 @@
         "privateDocsRequested": false
     },
     "marketplace": {
-        "summary": "Register the Vue 3 client runtime for Capell Inertia with Vue/Vite dependencies, a generic application entrypoint, and safe adapter activation.",
-        "description": "Registers Vue 3 NPM dependencies, the Capell Inertia Vue application entrypoint, and the vue adapter metadata consumed by the shared bridge. Choose it only when your frontend is built with Vue; it requires Capell Inertia and adds no screens to the admin.",
-        "problem": "Our Vue theme cannot use Capell pages until its client runtime is connected.",
-        "outcome": "A Vue Inertia theme can use the registered runtime to render public pages.",
+        "summary": "Capell pages arrive in your Vue app as ready-made Vue 3 components, and Vue is the default, so no setting needs changing.",
+        "description": "Vue 3 components for Capell pages, for teams who write their public site in Vue. Vue is the default adapter, so installing this package is enough to select it. The npm packages your build needs are declared for you.",
+        "problem": "Our developers write Vue, and I don't want them building a client for Capell pages from nothing.",
+        "outcome": "Your Vue developers start from working page and widget components while editors stay in the Capell admin.",
         "faq": [
             {
-                "question": "Will editors change their content workflow?",
-                "answer": "Teams can choose a Vue Inertia theme without changing how editors manage Capell content."
+                "question": "Do I need to change a setting to use the Vue adapter?",
+                "answer": "No. Vue is the adapter Capell Inertia uses until told otherwise, so choosing it needs no setting, only installing it."
             },
             {
-                "question": "What does the Vue adapter provide to themes?",
-                "answer": "It registers the Vue client runtime and entrypoint used by Vue-based Inertia themes."
+                "question": "What does it add to my front-end build?",
+                "answer": "Vue 3.5, Inertia's Vue library and Vite's Vue integration. The adapter declares all three for you."
             },
             {
-                "question": "Are there adapter settings in the admin?",
-                "answer": "The package declares no admin page or package settings."
+                "question": "Does it come with a look of its own?",
+                "answer": "No. The components carry class names such as capell-inertia-page but no styles, so your stylesheet decides the look."
+            },
+            {
+                "question": "What shows for a widget that has no Vue component of its own?",
+                "answer": "Content, image and title widgets have components of their own. Any other type is drawn by the content component, which shows only its title and content."
             }
         ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.jpg",
-                "alt": "Capell Inertia Vue adapter beta marketplace artwork",
-                "caption": "Beta artwork for the Vue runtime adapter; rendered proof belongs to a consuming Vue page or theme."
+                "alt": "Marketplace card titled Capell Inertia Vue Adapter with two panels in light and dark beside a three-step diagram",
+                "caption": "The card that represents the Vue adapter on its Marketplace listing."
             }
         ],
         "categories": ["frontend", "developer-tools"]

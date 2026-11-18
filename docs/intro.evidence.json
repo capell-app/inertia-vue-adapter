@@ -1,0 +1,65 @@
+[
+    {
+        "claim": "Your Vue developers get Capell pages as Vue 3 components, so they build on what Capell sends instead of writing a page client from scratch.",
+        "evidence": [
+            "src/Providers/InertiaVueAdapterServiceProvider.php",
+            "resources/js/app.js",
+            "resources/js/Pages/Capell/Page.vue"
+        ]
+    },
+    {
+        "claim": "Vue is the adapter Capell Inertia uses until told otherwise.",
+        "evidence": [
+            "src/Providers/InertiaVueAdapterServiceProvider.php",
+            "src/Support/InertiaVueFrontendResourceContributor.php"
+        ]
+    },
+    {
+        "claim": "Choosing it needs no setting, only installing it.",
+        "evidence": [
+            "src/Providers/InertiaVueAdapterServiceProvider.php",
+            "src/Support/InertiaVueFrontendResourceContributor.php",
+            "composer.json"
+        ]
+    },
+    {
+        "claim": "The build needs Vue 3.5, Inertia's Vue library and Vite's Vue integration, and the adapter declares all three for you.",
+        "evidence": ["src/Providers/InertiaVueAdapterServiceProvider.php"]
+    },
+    {
+        "claim": "Page and widget HTML is cleaned on the server before Vue draws it.",
+        "evidence": [
+            "resources/js/Pages/Capell/Page.vue",
+            "resources/js/Components/Capell/Widgets/Content.vue"
+        ]
+    },
+    {
+        "claim": "The components carry class names such as capell-inertia-page but no styles, so your stylesheet decides the look.",
+        "evidence": [
+            "resources/js/Pages/Capell/Page.vue",
+            "resources/js/Components/Capell/Widgets/Content.vue",
+            "resources/js/Components/Capell/Widgets/Image.vue",
+            "resources/js/Components/Capell/Widgets/Title.vue"
+        ]
+    },
+    {
+        "claim": "Three widget types have components of their own, which are content, image and title.",
+        "evidence": [
+            "resources/js/Pages/Capell/Page.vue",
+            "resources/js/Components/Capell/Widgets/Content.vue",
+            "resources/js/Components/Capell/Widgets/Image.vue",
+            "resources/js/Components/Capell/Widgets/Title.vue"
+        ]
+    },
+    {
+        "claim": "Any other type is drawn by the content component, and that shows only its title and content.",
+        "evidence": [
+            "resources/js/Pages/Capell/Page.vue",
+            "resources/js/Components/Capell/Widgets/Content.vue"
+        ]
+    },
+    {
+        "claim": "A page shows its title, its content and every layout container, with each widget drawn by its component.",
+        "evidence": ["resources/js/Pages/Capell/Page.vue"]
+    }
+]

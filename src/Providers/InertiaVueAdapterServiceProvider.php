@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Capell\InertiaVueAdapter\Providers;
 
+use Capell\Core\Contracts\Rendering\FrontendResourceContributor;
 use Capell\Core\Support\Packages\AbstractPackageServiceProvider;
-use Capell\Frontend\Contracts\FrontendResourceContributor;
 use Capell\Frontend\Data\Assets\FrontendPackageDependencyData;
 use Capell\Frontend\Enums\FrontendPackageDependencyType;
 use Capell\Frontend\Support\Assets\FrontendPackageDependencyRegistry;

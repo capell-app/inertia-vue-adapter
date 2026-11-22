@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
+use Capell\Core\Data\Diagnostics\DoctorCheckResultData;
+use Capell\Core\Data\Rendering\FrontendResourceContextData;
+use Capell\Core\Data\Rendering\FrontendRuntimeManifestData;
+use Capell\Core\Enums\Rendering\RenderingStrategyEnum;
 use Capell\Frontend\Data\Assets\FrontendPackageDependencyData;
 use Capell\Frontend\Data\Assets\ViteResourceSourceData;
-use Capell\Frontend\Data\FrontendResourceContextData;
-use Capell\Frontend\Data\FrontendRuntimeManifestData;
 use Capell\Frontend\Enums\FrontendPackageDependencyType;
-use Capell\Frontend\Enums\RenderingStrategyEnum;
 use Capell\Frontend\Support\Assets\FrontendPackageDependencyRegistry;
 use Capell\Frontend\Support\Assets\FrontendViteInputRegistry;
 use Capell\Frontend\Support\Assets\FrontendVitePluginRegistry;
@@ -102,4 +103,26 @@ it('resolves every declared vue page and mounts the public app with its props', 
 it('passes health when the vue adapter has been registered', function (): void {
     expect(InertiaVueAdapterHealthCheck::compatibleCapellApiVersion())->toBe('^1.0')
         ->and((new InertiaVueAdapterHealthCheck)->passes())->toBeTrue();
+});
+
+it('reports one passing diagnostic per vue adapter concern when it is registered and its entrypoint ships', function (): void {
+    $results = InertiaVueAdapterHealthCheck::runDiagnostics();
+
+    expect($results->pluck('id')->all())->toBe(['inertia-vue-adapter.registered', 'inertia-vue-adapter.entrypoint'])
+        ->and($results->every(static fn ($result): bool => $result->passed))->toBeTrue();
+});
+
+it('fails the vue adapter diagnostics when the bridge has no vue adapter registered', function (): void {
+    app()->instance(InertiaAdapterRegistry::class, new InertiaAdapterRegistry);
+
+    $results = InertiaVueAdapterHealthCheck::runDiagnostics();
+    $registered = $results->firstWhere('id', 'inertia-vue-adapter.registered');
+    $entrypoint = $results->firstWhere('id', 'inertia-vue-adapter.entrypoint');
+
+    throw_unless($registered instanceof DoctorCheckResultData && $entrypoint instanceof DoctorCheckResultData, RuntimeException::class, 'Expected both diagnostics.');
+
+    expect((new InertiaVueAdapterHealthCheck)->passes())->toBeFalse()
+        ->and($registered->passed)->toBeFalse()
+        ->and($registered->remediation)->not->toBeNull()
+        ->and($entrypoint->passed)->toBeTrue();
 });

@@ -8,14 +8,14 @@ The build needs Vue 3.5, Inertia's Vue library and Vite's Vue integration, and t
 
 Three widget types have components of their own, which are content, image and title. Any other type is drawn by the content component, and that shows only its title and content. A page shows its title, its content and every layout container, with each widget drawn by its component.
 
-- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/inertia-vue-adapter).
-- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/extensions/inertia-vue-adapter).
-- **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0.2`, `capell-app/inertia ^1.0`, `spatie/laravel-package-tools ^1.14.1`.
-- **Install:** `composer require capell-app/inertia-vue-adapter`.
+- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/inertia-vue-adapter).
+- **Licence:** Check the licence terms on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/inertia-vue-adapter).
+- **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.79`, `capell-app/frontend ^1.0.79`, `capell-app/inertia ^1.0`, `spatie/laravel-package-tools ^1.14.1`.
+- **Install:** `composer require capell-app/inertia-vue-adapter:@beta`.
 
 ## Quick Start
 
-1. Install the package: `composer require capell-app/inertia-vue-adapter`.
+1. Install the package: `composer require capell-app/inertia-vue-adapter:@beta`.
 2. Verify the package provider and manifest contributions are registered in the host app.
 
 ## For Developers
@@ -28,7 +28,7 @@ This extension works without configuration. There is nothing to set after instal
 
 ## Limits And Pitfalls
 
-- Install the required Capell packages at the versions in `composer.json`: `capell-app/core ^1.0.66`, `capell-app/frontend ^1.0.2`, `capell-app/inertia ^1.0`.
+- Install the required Capell packages at the versions in `composer.json`: `capell-app/core ^1.0.79`, `capell-app/frontend ^1.0.79`, `capell-app/inertia ^1.0`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
 - Custom write integrations must preserve invalidation for `inertia-vue` cache tags.
 

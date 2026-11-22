@@ -5,9 +5,9 @@
         "default": {
             "source": {
                 "ref": "HEAD",
-                "commit": "3df5cbf192ccdcd73f81c478c03d96b3beaaa74b",
+                "commit": "ebcd458e0a9ad46f7c93be498066a4c04dc6e896",
                 "providers": {
-                    "Providers/InertiaVueAdapterServiceProvider.php": "700dc5aa913cb6e117b6cf88578b058698c5e764c4309c36d9c2bf154c2cbc36"
+                    "Providers/InertiaVueAdapterServiceProvider.php": "23b62d14395d6bfd569a3c7505c5e0f8e34ed1847ceb282c4839fb7b2f076080"
                 },
                 "configure": null
             },

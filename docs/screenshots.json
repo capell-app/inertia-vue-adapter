@@ -1,7 +1,8 @@
 {
     "package": "inertia-vue-adapter",
     "composerName": "capell-app/inertia-vue-adapter",
-    "generatedFor": "deployment-screenshot-runner",
+    "generatedFor": "shared-capell-screenshot-runner",
+    "provenancePolicy": "runner-only-v1",
     "requiresInstalledPackage": true,
     "outputDirectory": "packages/inertia-vue-adapter/docs/screenshots",
     "auditStatus": "fixture-needed",

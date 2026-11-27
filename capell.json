@@ -6,6 +6,7 @@
     "kind": "plugin",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
+    "launchStatus": "preview",
     "description": "Vue 3 client for Capell pages with page, content, image and title components, the default choice for Vue front ends.",
     "product": {
         "group": "Capell Frontend",
